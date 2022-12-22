@@ -18,3 +18,6 @@ iOS 8.0 이후  UIAlertController 로 통합
     let alert = UIAlertController(title: "선택", message: "항목을 선택하기", preferredStyle: .actionSheet)
 </code>
 </pre>
+
+1. viewDidLoad()
+2. viewDidAppear(_:)

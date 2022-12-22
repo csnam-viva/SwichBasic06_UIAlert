@@ -14,10 +14,37 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-     
+            
     }
 
+    @IBAction func login(_ sender: Any) {
+        let title = "로그인"
+        let message =  "ip 입력하세요"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let ok = UIAlertAction(title: "확인", style: .default) { (_) in
+            if let tf = alert.textFields?[0]{
+                print("input value \( tf.text! )")
+            } else{
+                print("there is no input")
+            }
+            
+        }
+            
+       
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        
+        
+        alert.addTextField(configurationHandler: {(tf) in
+            tf.placeholder = "passwrod"
+            tf.isSecureTextEntry = true
+        })
+        self.present(alert, animated: false)
+        
+        
+    }
+    
     @IBAction func alert(_ sender: Any) {
         
         //let alert = UIAlertController(title: "선택", message: "항목을 선택하기", preferredStyle: .alert)
