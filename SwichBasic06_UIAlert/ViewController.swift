@@ -35,11 +35,29 @@ class ViewController: UIViewController {
         alert.addAction(ok)
         alert.addAction(cancel)
         
-        
-        alert.addTextField(configurationHandler: {(tf) in
+        // 원형
+        alert.addTextField(configurationHandler: { (textfield: UITextField) in
+            textfield.placeholder = "passwrod"
+            textfield.isSecureTextEntry = true
+        })
+        // 인자대신 메소드로 추가
+        alert.addTextField(){ (textfield: UITextField) in
+               textfield.placeholder = "passwrod"
+               textfield.isSecureTextEntry = true
+        }
+        // 클러저 인자 타입 생략
+        alert.addTextField() { (tf) in
             tf.placeholder = "passwrod"
             tf.isSecureTextEntry = true
-        })
+        }
+        // 클로저 인자 생략
+        alert.addTextField() {
+            $0.placeholder = "passwrod"
+            $0.isSecureTextEntry = true
+        }
+        
+        
+        
         self.present(alert, animated: false)
         
         
