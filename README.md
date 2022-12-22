@@ -22,7 +22,7 @@ iOS 8.0 이후  UIAlertController 로 통합
 
 1. viewDidLoad()   : 객체가 메모리에 로드되었을때
 2. viewDidAppear(_:) : 화면이 나왔을때
-
+<pre>
  <code>
          // 원형
         alert.addTextField(configurationHandler: { (textfield: UITextField) in
@@ -45,5 +45,12 @@ iOS 8.0 이후  UIAlertController 로 통합
             $0.isSecureTextEntry = true
         }
  </code>
+</pre>
+
+# Local Alarm
+UserNotification  :  iOS10 이상에서 
+UILocalNotification : 이하 버전에서  
 
 
+### applicationWillResignActive 동작안될때
+ 원인은 앱에서 scenes을 사용하고 있다면 UIKit가 applicationWillResignActive 를 호출하지 않고 sceneWillResignActive 를 호출함

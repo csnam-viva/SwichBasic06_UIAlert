@@ -34,6 +34,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                if settings.authorizationStatus == UNAuthorizationStatus.authorized{
+                    let nContent = UNMutableNotificationContent()
+                    nContent.badge = 1
+                    nContent.title = "로컬 알림 메세지"
+                    nContent.subtitle = "다시 앱을 열어주세요"
+                    nContent.body = "어서 열어 주세요 "
+                    nContent.sound = UNNotificationSound.default
+                    nContent.userInfo = ["name": "홍길동"]
+                    // 발송 조건 설정
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                    let request = UNNotificationRequest(identifier: "wakeup", content: nContent, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request)
+                } else{
+                    print("사용자가 동의하지 않음")
+                }
+            }
+        }
+        else{
+            
+        }
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
